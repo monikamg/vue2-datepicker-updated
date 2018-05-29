@@ -42,7 +42,7 @@
               :class="getTimeClasses(item.value.hours * 60 + item.value.minutes, -1)"
               @click="pickTime(item.value)"
               v-for="item in timeSelectOptions">
-              {{item.label}}
+              {{item.label}} 
             </li>
           </ul>
         </div>
@@ -65,9 +65,9 @@
 </template>
 
 <script>
-const getTimeArray = function (len, step = 1) {
+const getTimeArray = function (len, step = 1, start = 0) {
   const length = parseInt(len / step)
-  return Array.apply(null, { length }).map((v, i) => i * step)
+  return Array.apply(null, { length }).map((v, i) => (i * step) + start)
 }
 
 const parseTime = function(time) {
@@ -100,22 +100,20 @@ export default {
     startAt: null,
     endAt: null,
     value: null,
-    show: Boolean
+    show: Boolean,
+    defaultDate: '',
+    timeFormat: null
   },
   data() {
     const translation = this.$parent.translation
-    const minuteStep = this.$parent.minuteStep
-    const times = [getTimeArray(24, 1), getTimeArray(60, minuteStep || 1)]
-    if (minuteStep === 0) {
-      times.push(getTimeArray(60, 1))
-    }
+    
     return {
       months: translation.months,
       dates: [], // 日历面板
       years: [], // 年代面板
-      now: new Date(), // calendar-header 显示的时间, 用于切换日历
+      now: this.defaultDate ? this.defaultDate : new Date(), // calendar-header 显示的时间, 用于切换日历
       currentPanel: 'date',
-      times: times
+      times: this.fetchTimes()
     }
   },
   computed: {
@@ -175,6 +173,9 @@ export default {
     },
     curSecond() {
       return this.now.getSeconds()
+    },
+    currMeridiem() {
+      return this.now.getHours() > 12 ? 'PM' : 'AM'
     }
   },
   created() {
@@ -199,8 +200,25 @@ export default {
     }
   },
   methods: {
+    fetchTimes () {
+      const minuteStep = this.$parent.minuteStep
+      let times = []
+      if (this.timeFormat === 24) {
+        times = [getTimeArray(24, 1), getTimeArray(60, minuteStep || 1)]
+      } else {
+        times = [getTimeArray(12,1, 1), getTimeArray(60, minuteStep || 1)]
+      }
+      if (minuteStep === 0) {
+        times.push(getTimeArray(60, 1))
+      }
+      if (this.timeFormat === 12) {
+        times.push(['AM', 'PM'])
+      }
+
+      return times
+    },
     updateNow() {
-      this.now = this.value ? new Date(this.value) : new Date()
+      this.now = this.value ? new Date(this.value) : (this.defaultDate !== '' ?  this.defaultDate : new Date())
     },
     // 更新面板选择时间
     updateCalendar() {
@@ -322,6 +340,8 @@ export default {
           curValue = this.curSecond
           cellTime = new Date(this.now).setSeconds(value)
           break
+        case 3:
+          currValue = this.currMeridiem
       }
       if (
         (this.$parent.notBefore !== '' &&
@@ -334,6 +354,8 @@ export default {
 
       if (value === curValue) {
         classes.push('cur-time')
+      } else if (index === 3) {
+        classes.push('disabled')
       } else if (startTime) {
         if (cellTime < startTime) {
           classes.push('disabled')
@@ -486,6 +508,15 @@ export default {
         date.setMinutes(value)
       } else if (index === 2) {
         date.setSeconds(value)
+      } else {
+        let modifiedHour = 0
+        if (value === 'AM') {
+          modifiedHour = date.getHours() > 12 ? date.getHours() - 12 : date.getHours()
+        } else {
+
+        }
+        date.setHours(modifiedHour)
+
       }
       this.now = date
       this.$emit('input', date)
