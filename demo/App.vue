@@ -4,7 +4,8 @@
         <section class="demo">
           <span class="label">datetime:</span>
           <!-- <date-picker v-model="value4" lang="en" type="datetime" format="yyyy-MM-dd HH:mm:ss"></date-picker> -->
-          <date-picker v-model="value4" lang="en" type="datetime" format="yyyy-MM-dd HH:mm:ss" :defaultDate='new Date(Date.parse("2018-03-01"))' :timeFormat='12'></date-picker>
+          <!-- <date-picker v-model="value4" lang="en" type="datetime" format="yyyy-MM-dd hh:mm:ss a" :defaultDate='new Date(Date.parse("2018-03-01"))' :timeFormat='12'></date-picker> -->
+          <date-picker v-model="value4" lang="en" type="datetime" format="yyyy-MM-dd hh:mm a" :timeFormat='12'></date-picker>
         </section>
     </div>
     </div>

@@ -175,7 +175,7 @@ export default {
       return this.now.getSeconds()
     },
     currMeridiem() {
-      return this.now.getHours() > 12 ? 'PM' : 'AM'
+      return this.now.getHours() >= 12 ? 'PM' : 'AM'
     }
   },
   created() {
@@ -329,6 +329,7 @@ export default {
           cellTime = new Date(this.now).setHours(Math.floor(value / 60), value % 60, 0)
           break
         case 0:
+          value = this.timeFormat === 12 && this.currMeridiem === 'PM' ? value + 12: value
           curValue = this.curHour
           cellTime = new Date(this.now).setHours(value)
           break
@@ -341,7 +342,7 @@ export default {
           cellTime = new Date(this.now).setSeconds(value)
           break
         case 3:
-          currValue = this.currMeridiem
+          curValue = this.currMeridiem
       }
       if (
         (this.$parent.notBefore !== '' &&
@@ -355,7 +356,6 @@ export default {
       if (value === curValue) {
         classes.push('cur-time')
       } else if (index === 3) {
-        classes.push('disabled')
       } else if (startTime) {
         if (cellTime < startTime) {
           classes.push('disabled')
@@ -503,20 +503,28 @@ export default {
       }
       const date = new Date(this.now)
       if (index === 0) {
+        if (this.timeFormat === 12) {
+          if (this.currMeridiem === 'AM') {
+            value = value < 12 ? value: 0
+          } else {
+            value = value < 12 ? value + 12 : value
+          }
+        }
         date.setHours(value)
       } else if (index === 1) {
         date.setMinutes(value)
       } else if (index === 2) {
         date.setSeconds(value)
-      } else {
-        let modifiedHour = 0
-        if (value === 'AM') {
-          modifiedHour = date.getHours() > 12 ? date.getHours() - 12 : date.getHours()
+      } else  if (index === 3) {
+        if (value === 'PM') {
+          if (this.currMeridiem === 'AM') {
+            date.setHours(date.getHours() + 12)
+          }
         } else {
-
+          if (this.currMeridiem === 'PM') {
+            date.setHours(date.getHours() - 12)
+          }
         }
-        date.setHours(modifiedHour)
-
       }
       this.now = date
       this.$emit('input', date)
