@@ -1,5 +1,5 @@
 {
-  "name": "vue2-datepicker-mask",
+  "name": "vue2-datepicker-improved",
   "description": "A Datepicker Component For Vue2. Forked from vue2-datepicker",
   "main": "dist/build.js",
   "version": "2.0.2",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ramya-Palaniswami/vue2-datepicker-mask"
+    "url": "git+https://github.com/irajasyed/vue2-datepicker-improved.git"
   },
   "keywords": [
     "vue",
