@@ -4,23 +4,25 @@
 
 > A Datepicker Component For Vue2
 
-## Demo
 Forked from [vue2-datepicker](<https://mengxiong10.github.io/vue2-datepicker/>)
-Masking is done from the format given.
+## Improved Features
+* Masking is done from the format given.
+* By Default Picker will open in Current Month. This can be changed with 'defaultDate' prop.
+## Demo
 
 ![image](https://github.com/mengxiong10/vue2-datepicker/raw/master/screenshot/demo.PNG)
 
 ## Install
 
 ```bash
-$ npm install vue2-datepicker-mask --save
+$ npm install vue2-datepicker-improved --save
 ```
 
 ## Usage
 
 ```html
 <script>
-import DatePicker from 'vue2-datepicker'
+import DatePicker from 'vue2-datepicker-improved'
 
 export default {
   components: { DatePicker },
@@ -72,7 +74,7 @@ export default {
 | input-class         | String        | 'mx-input'  | the input class name                                |
 | confirm-text        | String        | 'OK'        | the default text to display on confirm button       |
 | range-separator     | String        | '~'         | the range separator text                            |
-
+| defaultDate     | Date        | new Date()         | if given, then picker will open in the respective date's month.                            |
 
 #### lang
 * String (en/zh/es/pt-br/fr/ru/de/it/cs)
