@@ -101,8 +101,7 @@ export default {
     endAt: null,
     value: null,
     show: Boolean,
-    defaultDate: '',
-    timeFormat: null
+    defaultDate: ''
   },
   data() {
     const translation = this.$parent.translation
@@ -203,18 +202,10 @@ export default {
     fetchTimes () {
       const minuteStep = this.$parent.minuteStep
       let times = []
-      if (this.timeFormat === 24) {
-        times = [getTimeArray(24, 1), getTimeArray(60, minuteStep || 1)]
-      } else {
-        times = [getTimeArray(12,1, 1), getTimeArray(60, minuteStep || 1)]
-      }
+      times = [getTimeArray(24, 1), getTimeArray(60, minuteStep || 1)]
       if (minuteStep === 0) {
         times.push(getTimeArray(60, 1))
       }
-      if (this.timeFormat === 12) {
-        times.push(['AM', 'PM'])
-      }
-
       return times
     },
     updateNow() {
@@ -329,7 +320,7 @@ export default {
           cellTime = new Date(this.now).setHours(Math.floor(value / 60), value % 60, 0)
           break
         case 0:
-          value = this.timeFormat === 12 && this.currMeridiem === 'PM' ? value + 12: value
+          value = value
           curValue = this.curHour
           cellTime = new Date(this.now).setHours(value)
           break
@@ -503,28 +494,11 @@ export default {
       }
       const date = new Date(this.now)
       if (index === 0) {
-        if (this.timeFormat === 12) {
-          if (this.currMeridiem === 'AM') {
-            value = value < 12 ? value: 0
-          } else {
-            value = value < 12 ? value + 12 : value
-          }
-        }
         date.setHours(value)
       } else if (index === 1) {
         date.setMinutes(value)
       } else if (index === 2) {
         date.setSeconds(value)
-      } else  if (index === 3) {
-        if (value === 'PM') {
-          if (this.currMeridiem === 'AM') {
-            date.setHours(date.getHours() + 12)
-          }
-        } else {
-          if (this.currMeridiem === 'PM') {
-            date.setHours(date.getHours() - 12)
-          }
-        }
       }
       this.now = date
       this.$emit('input', date)
@@ -539,7 +513,7 @@ export default {
       date.setHours(value.hours, value.minutes, 0)
       this.now = date
       this.$emit('input', date)
-      this.$emit('select')      
+      this.$emit('select')
     }
   }
 }

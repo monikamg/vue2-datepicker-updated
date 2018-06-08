@@ -28,13 +28,11 @@
     :style="position"
     ref="calendar"
     v-show="showPopup">
-    <!-- :timeFormat="timeFormat"></calendar-panel> -->
     <calendar-panel v-if="!range"
       v-model="currentValue"
       @select="selectDate"
       :show="showPopup"
-      :defaultDate="defaultDate"
-      :timeFormat="timeFormat"></calendar-panel>
+      :defaultDate="defaultDate"></calendar-panel>
     <div v-else
       style="overflow:hidden">
       <div class="mx-datepicker-top"
@@ -165,10 +163,6 @@ export default {
     defaultDate:{
       type: Date,
       default: new Date()
-    },
-    timeFormat: {
-      type: Number,
-      default: 24
     }
   },
   data () {
