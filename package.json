@@ -2,7 +2,7 @@
   "name": "vue2-datepicker-improved",
   "description": "A Datepicker Component For Vue2. Forked from vue2-datepicker",
   "main": "dist/build.js",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "demo": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack.demo.config.js",
