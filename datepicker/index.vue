@@ -196,9 +196,7 @@ export default {
       }
     },
     format: function(newValue, oldValue) {
-      let mask = this.format
-      this.computedMask = mask.replace(/([a-zA-Z])/gi, '#')
-      // console.log('this.mask', this.computedMask)
+     this.getMaskValue()
     }
   },
   computed: {
@@ -235,6 +233,14 @@ export default {
     }
   },
   methods: {
+  getMaskValue () {
+      let mask = this.format
+      this.computedMask = mask.replace(/([a-zA-Z])/gi, '#')
+      if ((this.format.charAt(this.format.length - 1)) === 'A'){
+        let subMask = this.computedMask.substring(0, (mask.length - 1))
+        this.computedMask = subMask.concat('SS')
+      }
+    },
     handleInput (event) {
       this.userInput = event.target.value
     },
@@ -446,9 +452,7 @@ export default {
   },
   created () {
     this.initRanges()
-    let mask = this.format
-    this.computedMask = mask.replace(/([a-zA-Z])/gi, '#')
-    // console.log('this.mask', this.computedMask)
+    this.getMaskValue()
   },
   directives: {
     clickoutside: {
