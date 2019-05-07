@@ -172,7 +172,7 @@ export default {
       currentValue: this.value,
       position: null,
       userInput: null,
-      ranges: [] // 快捷选项,
+      ranges: [], // 快捷选项,
       computedMask: ''
     }
   },
