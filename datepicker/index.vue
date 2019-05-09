@@ -277,9 +277,12 @@ export default {
       this.closePopup()
       this.$emit('confirm', this.currentValue)
     },
-    selectDate (show = false) {
+    selectDate (show = false, isTimePicker) {
       if (!this.confirm && !this.disabled) {
         this.updateDate()
+        if (this.type === 'datetime' && !this.range && isTimePicker) {
+          this.closePopup()
+        }
         if (!show && this.type === 'date' && !this.range) {
           this.closePopup()
         }
