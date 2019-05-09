@@ -513,7 +513,7 @@ export default {
       date.setHours(value.hours, value.minutes, 0)
       this.now = date
       this.$emit('input', date)
-      this.$emit('select')
+      this.$emit('select', false, true)
     }
   }
 }
