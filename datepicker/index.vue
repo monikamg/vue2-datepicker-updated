@@ -2,7 +2,7 @@
 <div class="mx-datepicker"
   :class="{'disabled': disabled}"
   :style="{'width': computedWidth,'min-width':range ? (type === 'datetime' ? '320px' : '210px') : '140px'}"
-  v-clickoutside="closePopup">
+  v-clickoutside="saveValueAndClose">
   <input :name="inputName"
     :disabled="disabled"
     :class="inputClass"
@@ -10,18 +10,18 @@
     :readonly="!editable || range"
     :placeholder="innerPlaceholder"
     ref="input"
-    @mouseenter="hoverIcon"
-    @mouseleave="hoverIcon"
+    @mouseenter="hoverIcon($event)"
+    @mouseleave="hoverIcon($event)"
     @click="togglePopup"
-    @input="handleInput"
-    @change="handleChange"
+    @input="handleInput($event)"
+    @change="handleChange($event)"
     @mousedown="$event.preventDefault()"
     type="text"
     v-mask="computedMask">
   <i class="mx-input-icon"
     :class="showCloseIcon ? 'mx-input-icon__close' : 'mx-input-icon__calendar'"
-    @mouseenter="hoverIcon"
-    @mouseleave="hoverIcon"
+    @mouseenter="hoverIcon($event)"
+    @mouseleave="hoverIcon($event)"
     @click="clickIcon"></i>
   <div class="mx-datepicker-popup"
     :class="{'range':range}"
@@ -234,7 +234,13 @@ export default {
     }
   },
   methods: {
-  getMaskValue () {
+    saveValueAndClose () {
+      if(this.userInput) {
+        this.handleChange()
+      }
+      this.closePopup()
+    },
+    getMaskValue () {
       let mask = this.format
       this.computedMask = mask.replace(/([a-zA-Z])/gi, '#')
       if ((this.format.charAt(this.format.length - 1)) === 'A'){
@@ -246,7 +252,7 @@ export default {
       this.userInput = event.target.value
     },
     handleChange (event) {
-      const value = event.target.value
+      const value = this.userInput || (event && event.target ? event.target.value : '')
       const date = this.parseDate(value, this.format)
       if (date && this.editable && !this.range) {
         if (this.notBefore && date < new Date(this.notBefore)) {
