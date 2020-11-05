@@ -1,8 +1,8 @@
 {
-  "name": "vue2-datepicker-improved",
+  "name": "vue2-datepicker-updated",
   "description": "A Datepicker Component For Vue2. Forked from vue2-datepicker",
   "main": "dist/build.js",
-  "version": "2.0.5",
+  "version": "1.0.1",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "demo": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack.demo.config.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/irajasyed/vue2-datepicker-improved.git"
+    "url": "git+https://github.com/ShanmugaPriyaElango/vue2-datepicker-updated.git"
   },
   "keywords": [
     "vue",
@@ -20,9 +20,9 @@
   "author": "xiemengxiong",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/irajasyed/vue2-datepicker-improved/issues"
+    "url": "https://github.com/ShanmugaPriyaElango/vue2-datepicker-updated/issues"
   },
-  "homepage": "https://github.com/irajasyed/vue2-datepicker-improved/#readme",
+  "homepage": "https://github.com/ShanmugaPriyaElango/vue2-datepicker-updated/#readme",
   "dependencies": {
     "vue": "^2.2.1",
     "vue-the-mask": "^0.11.1"
