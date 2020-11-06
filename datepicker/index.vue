@@ -348,7 +348,12 @@ export default {
         return false
       }
       obj.M--
-      return new Date(obj.y, obj.M, obj.d, obj.H || obj.h, obj.m, obj.s)
+      str = str ? str.toLowerCase() : ''
+      let hourVal = obj.h
+      if (str.includes('pm')) {
+        hourVal += 12
+      }
+      return new Date(obj.y, obj.M, obj.d, obj.H || hourVal, obj.m, obj.s)
     },
     formatDate (date, fmt = 'yyyy-MM-dd HH:mm:ss') {
       const hour = date.getHours()
