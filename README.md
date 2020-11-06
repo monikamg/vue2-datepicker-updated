@@ -1,6 +1,4 @@
-# vue2-datepicker
-
-<!-- https://github.com/Ramya-Palaniswami/vue2-datepicker-mask/blob/master/README_CN.md -->
+# vue2-datepickers
 
 > A Datepicker Component For Vue2
 
@@ -8,6 +6,7 @@ Forked from [vue2-datepicker](<https://mengxiong10.github.io/vue2-datepicker/>)
 ## Improved Features
 * Masking is done from the format given.
 * By Default Picker will open in Current Month. This can be changed with 'defaultDate' prop.
+* Bug Fix - On user input PM string can be given for date time  
 ## Demo
 
 ![image](https://github.com/mengxiong10/vue2-datepicker/raw/master/screenshot/demo.PNG)
@@ -15,14 +14,14 @@ Forked from [vue2-datepicker](<https://mengxiong10.github.io/vue2-datepicker/>)
 ## Install
 
 ```bash
-$ npm install vue2-datepicker-improved --save
+$ npm install vue2-datepicker-updated --save
 ```
 
 ## Usage
 
 ```html
 <script>
-import DatePicker from 'vue2-datepicker-improved'
+import DatePicker from 'vue2-datepicker-updated'
 
 export default {
   components: { DatePicker },
