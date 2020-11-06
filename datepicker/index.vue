@@ -350,6 +350,9 @@ export default {
       obj.M--
       str = str ? str.toLowerCase() : ''
       let hourVal = obj.h
+      if (hourVal === 12) {
+        hourVal = 0
+      }
       if (str.includes('pm')) {
         hourVal += 12
       }
