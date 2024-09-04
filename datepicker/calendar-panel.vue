@@ -291,7 +291,7 @@ export default {
       const endTime = this.endAt ? new Date(this.endAt).setHours(0, 0, 0, 0) : 0
       
       // Specify the timezone, for example, 'Pacific/Auckland'
-      const timezone = 'Pacific/Auckland';
+      const timezone = 'NZ';
       // Get the current date in the specified timezone, then set time to midnight
       let dateInTimezone = moment.tz(timezone).startOf('day');
       const today = dateInTimezone.format()
