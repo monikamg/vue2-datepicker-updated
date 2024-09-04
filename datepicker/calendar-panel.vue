@@ -65,6 +65,8 @@
 </template>
 
 <script>
+const moment = require('moment-timezone');
+
 const getTimeArray = function (len, step = 1, start = 0) {
   const length = parseInt(len / step)
   return Array.apply(null, { length }).map((v, i) => (i * step) + start)
@@ -101,7 +103,8 @@ export default {
     endAt: null,
     value: null,
     show: Boolean,
-    defaultDate: ''
+    defaultDate: '',
+    today: new Date().setHours(0, 0, 0, 0)
   },
   data() {
     const translation = this.$parent.translation
@@ -286,7 +289,13 @@ export default {
         ? new Date(this.startAt).setHours(0, 0, 0, 0)
         : 0
       const endTime = this.endAt ? new Date(this.endAt).setHours(0, 0, 0, 0) : 0
-      const today = new Date().setHours(0, 0, 0, 0)
+      
+      // Specify the timezone, for example, 'Pacific/Auckland'
+      const timezone = 'Pacific/Auckland';
+      // Get the current date in the specified timezone, then set time to midnight
+      let dateInTimezone = moment.tz(timezone).startOf('day');
+      const today = dateInTimezone.format()
+
       if (this.isDisabled(cellTime)) {
         return 'disabled'
       }
