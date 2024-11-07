@@ -397,11 +397,13 @@ export default {
         now.setFullYear(now.getFullYear() + flag, now.getMonth(), 1)
         this.now = now
       }
+      this.$emit('panel-changed', 'year')
     },
     changeMonth(flag) {
       const now = new Date(this.now)
       now.setMonth(now.getMonth() + flag, 1)
       this.now = now
+      this.$emit('panel-changed', 'month')
     },
     scrollIntoView(container, selected) {
       if (!selected) {
