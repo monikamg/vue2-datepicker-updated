@@ -31,6 +31,7 @@
     <calendar-panel v-if="!range"
       v-model="currentValue"
       @select="selectDate"
+      @panel-changed="panelChanged"
       :show="showPopup"
       :defaultDate="defaultDate"></calendar-panel>
     <div v-else
@@ -44,11 +45,13 @@
         v-model="currentValue[0]"
         :end-at="currentValue[1]"
         @select="selectDate"
+        @panel-changed="panelChanged"
         :show="showPopup"></calendar-panel>
       <calendar-panel style="width:50%;"
         v-model="currentValue[1]"
         :start-at="currentValue[0]"
         @select="selectDate"
+        @panel-changed="panelChanged"
         :show="showPopup"></calendar-panel>
     </div>
     <div class="mx-datepicker-footer"
@@ -293,6 +296,9 @@ export default {
           this.closePopup()
         }
       }
+    },
+    panelChanged (value) {
+      this.$emit('panel-changed', value)
     },
     closePopup () {
       this.showPopup = false
