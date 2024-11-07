@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ShanmugaPriyaElango/vue2-datepicker-updated.git"
+    "url": "git+https://github.com/monikamg/vue2-datepicker-updated.git"
   },
   "keywords": [
     "vue",
@@ -20,9 +20,9 @@
   "author": "xiemengxiong",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ShanmugaPriyaElango/vue2-datepicker-updated/issues"
+    "url": "https://github.com/monikamg/vue2-datepicker-updated/issues"
   },
-  "homepage": "https://github.com/ShanmugaPriyaElango/vue2-datepicker-updated/#readme",
+  "homepage": "https://github.com/monikamg/vue2-datepicker-updated/#readme",
   "dependencies": {
     "vue": "^2.2.1",
     "vue-the-mask": "^0.11.1"
