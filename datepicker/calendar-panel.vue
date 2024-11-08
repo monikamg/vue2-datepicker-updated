@@ -119,7 +119,7 @@ export default {
     }
   },
   mounted: function () {
-    console.log('Vue datepicker called')
+    console.log('### Vue datepicker called')
   },
   computed: {
     // 日历显示头
@@ -394,12 +394,14 @@ export default {
         now.setFullYear(now.getFullYear() + flag, now.getMonth(), 1)
         this.now = now
       }
+      console.log('### Year changed')
       this.$emit('panel-changed', 'year')
     },
     changeMonth(flag) {
       const now = new Date(this.now)
       now.setMonth(now.getMonth() + flag, 1)
       this.now = now
+      console.log('### Month changed')
       this.$emit('panel-changed', 'month')
     },
     scrollIntoView(container, selected) {
