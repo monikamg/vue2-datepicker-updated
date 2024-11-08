@@ -104,7 +104,8 @@ export default {
     value: null,
     show: Boolean,
     defaultDate: '',
-    today: new Date().setHours(0, 0, 0, 0)
+    today: new Date().setHours(0, 0, 0, 0),
+    timezone: String
   },
   data() {
     const translation = this.$parent.translation
@@ -284,6 +285,8 @@ export default {
       return false
     },
     getDateClasses(cell) {
+      moment.tz.setDefault(this.timezone)
+
       const classes = []
       const cellTime = new Date(cell.date).setHours(0, 0, 0, 0)
       const cellEndTime = new Date(cell.date).setHours(23, 59, 59, 999)
@@ -292,7 +295,13 @@ export default {
         ? new Date(this.startAt).setHours(0, 0, 0, 0)
         : 0
       const endTime = this.endAt ? new Date(this.endAt).setHours(0, 0, 0, 0) : 0
-      const today = new Date().setHours(0, 0, 0, 0)
+      const todayOld = new Date().setHours(0, 0, 0, 0)
+      const currentDate = moment().format('YYYY-MM-DD')
+      const today = (moment.tz(currentDate, 'Asia/Kolkata').utc().unix()) * 1000;
+
+      console.log('### today ', today)
+      console.log('### today OLD ', todayOld)
+      console.log('### cell ', cellTime)
       if (this.isDisabled(cellTime)) {
         return 'disabled'
       }

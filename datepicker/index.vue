@@ -32,6 +32,7 @@
       v-model="currentValue"
       @select="selectDate"
       @panel-changed="panelChanged"
+      :timezone="timezone"
       :show="showPopup"
       :defaultDate="defaultDate"></calendar-panel>
     <div v-else
@@ -44,12 +45,14 @@
       <calendar-panel style="width:50%;box-shadow:1px 0 rgba(0, 0, 0, .1)"
         v-model="currentValue[0]"
         :end-at="currentValue[1]"
+        :timezone="timezone"
         @select="selectDate"
         @panel-changed="panelChanged"
         :show="showPopup"></calendar-panel>
       <calendar-panel style="width:50%;"
         v-model="currentValue[1]"
         :start-at="currentValue[0]"
+        :timezone="timezone"
         @select="selectDate"
         @panel-changed="panelChanged"
         :show="showPopup"></calendar-panel>
@@ -79,6 +82,10 @@ export default {
   components: { CalendarPanel },
   props: {
     value: null,
+    timezone: {
+      type: String,
+      default: 'Asia/Kolkata'
+    },
     format: {
       type: String,
       default: 'yyyy-MM-dd'
