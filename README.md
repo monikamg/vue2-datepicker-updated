@@ -4,6 +4,7 @@
 
 Forked from [vue2-datepicker](<https://mengxiong10.github.io/vue2-datepicker/>)
 ## Improved Features
+  Timezone is supported. Date will be shown based on the timezone provided in props.
 * Masking is done from the format given.
 * By Default Picker will open in Current Month. This can be changed with 'defaultDate' prop.
 * Bug Fix - On user input PM string can be given for date time  
@@ -14,14 +15,14 @@ Forked from [vue2-datepicker](<https://mengxiong10.github.io/vue2-datepicker/>)
 ## Install
 
 ```bash
-$ npm install vue2-datepicker-updated --save
+$ npm install vue2-datepicker-updated-v2 --save
 ```
 
 ## Usage
 
 ```html
 <script>
-import DatePicker from 'vue2-datepicker-updated'
+import DatePicker from 'vue2-datepicker-updated-v2'
 
 export default {
   components: { DatePicker },
