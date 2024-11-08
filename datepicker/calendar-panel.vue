@@ -118,6 +118,9 @@ export default {
       times: this.fetchTimes()
     }
   },
+  mounted: function () {
+    console.log('Vue datepicker called')
+  },
   computed: {
     // 日历显示头
     days() {
@@ -289,13 +292,7 @@ export default {
         ? new Date(this.startAt).setHours(0, 0, 0, 0)
         : 0
       const endTime = this.endAt ? new Date(this.endAt).setHours(0, 0, 0, 0) : 0
-      
-      // Specify the timezone, for example, 'Pacific/Auckland'
-      const timezone = 'NZ';
-      // Get the current date in the specified timezone, then set time to midnight
-      let dateInTimezone = moment.tz(timezone).startOf('day');
-      const today = dateInTimezone.format()
-
+      const today = new Date().setHours(0, 0, 0, 0)
       if (this.isDisabled(cellTime)) {
         return 'disabled'
       }
