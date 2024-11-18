@@ -305,7 +305,6 @@ export default {
       }
     },
     panelChanged (value) {
-      console.log('### Panel changed')
       this.$emit('panel-changed', value)
     },
     closePopup () {

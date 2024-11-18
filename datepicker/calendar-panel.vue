@@ -119,9 +119,6 @@ export default {
       times: this.fetchTimes()
     }
   },
-  mounted: function () {
-    console.log('### Vue datepicker called')
-  },
   computed: {
     // 日历显示头
     days() {
@@ -299,9 +296,6 @@ export default {
       const currentDate = moment().format('YYYY-MM-DD')
       const today = (moment.tz(currentDate, 'Asia/Kolkata').utc().unix()) * 1000;
 
-      console.log('### today ', today)
-      console.log('### today OLD ', todayOld)
-      console.log('### cell ', cellTime)
       if (this.isDisabled(cellTime)) {
         return 'disabled'
       }
@@ -403,14 +397,12 @@ export default {
         now.setFullYear(now.getFullYear() + flag, now.getMonth(), 1)
         this.now = now
       }
-      console.log('### Year changed')
       this.$emit('panel-changed', 'year')
     },
     changeMonth(flag) {
       const now = new Date(this.now)
       now.setMonth(now.getMonth() + flag, 1)
       this.now = now
-      console.log('### Month changed')
       this.$emit('panel-changed', 'month')
     },
     scrollIntoView(container, selected) {
