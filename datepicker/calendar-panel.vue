@@ -296,11 +296,6 @@ export default {
       const currentDate = moment().format('YYYY-MM-DD')
       const today = (moment.tz(currentDate, moment.tz.guess()).utc().unix()) * 1000;
 
-console.log('todayOld', todayOld)
-console.log('today', todayOld)
-console.log('currentDate', todayOld)
-console.log('current tz', moment.tz.guess())
-
       if (this.isDisabled(cellTime)) {
         return 'disabled'
       }
