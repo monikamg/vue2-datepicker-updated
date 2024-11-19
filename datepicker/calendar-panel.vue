@@ -294,7 +294,7 @@ export default {
       const endTime = this.endAt ? new Date(this.endAt).setHours(0, 0, 0, 0) : 0
       const todayOld = new Date().setHours(0, 0, 0, 0)
       const currentDate = moment().format('YYYY-MM-DD')
-      const today = (moment.tz(currentDate, 'Asia/Kolkata').utc().unix()) * 1000;
+      const today = (moment.tz(currentDate, moment.tz.guess()).utc().unix()) * 1000;
 
       if (this.isDisabled(cellTime)) {
         return 'disabled'
