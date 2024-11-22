@@ -74,7 +74,8 @@ export default {
 | input-class         | String        | 'mx-input'  | the input class name                                |
 | confirm-text        | String        | 'OK'        | the default text to display on confirm button       |
 | range-separator     | String        | '~'         | the range separator text                            |
-| defaultDate     | Date        | new Date()         | if given, then picker will open in the respective date's month.                            |
+| defaultDate     | Date        | new Date()         | if given, then picker will open in the respective date's month.| 
+| timezone            | String        | ''          | If given, date will be shown based on timezone      |
 
 #### lang
 * String (en/zh/es/pt-br/fr/ru/de/it/cs)
